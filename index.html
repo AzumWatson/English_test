@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>English Test</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h1 id = "chinese">Eventually</h1>
+				<p>A simple template for telling the world when you'll launch<br />
+				your next big thing. Brought to you by <a href="http://html5up.net">HTML5 UP</a>.</p>
+			</header>
+
+		<!-- Signup Form -->
+			<div id="signup-form">
+				<input type="email" id="email" placeholder="请输入英文翻译" />
+				<input id="enter" type="submit" value="验证" />
+			</div>
+
+		<!-- Footer -->
+			
+
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
+			<script>
+				
+				var eng = ["trust","house","want","need","favorite","color","think","fail","frist","last","second","supermarket","please","next to","near","lots of","keep","collection","result","turn","around","more than","than","people","employee","parking lot","port","airport","such","choose","run away","flee","encounter","steal","building","fate","continue","win","bring","fall","advantage","expand","miss","check","carefully","trace","full","demon","become"];
+				var zhg = ["相信 信任","房屋","想要","需要","最爱","颜色","想 认为","失败","第一 首先","最后","第二 其次","超市","请问 请","隔壁 旁边是","附近","许多","保持","收藏 收集","结果","转变 转向","周围 围绕 到处","超过 不止","比","人们","员工 雇员","停车场","端口 港口","机场 空港","这样 这种","选择","逃跑","逃亡","遭遇 偶然遇见","偷窃 偷","建筑","命运","持续 延伸","赢 胜利","带来 导致 引发","下降 下落 跌倒 秋天","优势 优点 好处","展开 扩大 扩张","错过 失去 思念","检查 查看","仔细地 认真的","追踪 痕迹 跟踪","充满 满","恶魔","成为"];
+				var Numbe=Math.floor(Math.random()*eng.length),num=0,badnum=0;
+				var str,str2=[];
+
+				var emails = document.getElementById('email');
+				var enters = document.getElementById('enter');
+				var chinese = document.getElementById('chinese');
+
+				chinese.innerText = zhg[Numbe];
+
+				//监听输入框是否有输入
+				emails.onkeydown= function(e){
+					//检测到输入的是 回车 则运行 englishtest函数
+					if(e.keyCode == 13){
+						englishtest();
+					}
+				}
+
+				//监听 验证 按钮是否被点击 被点击则运行 englishtest函数
+				enters.onclick = function(){
+					englishtest();
+				}
+
+
+				//刷新页面中文 和 判断和中英文是否正确的 函数
+				function englishtest(){
+					if(str2.length != eng.length){
+						str = emails.value;
+
+						console.log(eng[Numbe]);
+
+						if(eng[Numbe] == str){
+							num += 1;
+							str2.push(Numbe);
+						}else{
+							badnum += 1;
+						}
+
+						
+						console.log(emails.value);
+						emails.value = "";
+
+						while(true){
+
+							Numbe = Math.floor(Math.random()*eng.length); 
+
+							console.log(Numbe);
+							
+							for(var i=0;i < str2.length;i++){
+								if(Numbe == str2[i]){
+									break;
+								}
+							}
+
+							// if i==str2.length 说明已经循环到最后一遍了。
+							if(i == str2.length){
+								chinese.innerText = zhg[Numbe];
+								break;
+							}
+
+							if(str2.length == eng.length){
+								alert('你错误了'+badnum+'次');
+								break;
+							}
+						}
+					}else{
+						alert('你错误了'+badnum+'次');
+					}
+				}
+			</script>
+	</body>
+</html>
